@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Fountain REST API v2 wrapper for Ruby'
   spec.homepage      = 'https://github.com/Studiosity/fountain-ruby'
   spec.license       = 'MIT'
-  spec.required_ruby_version = ['>= 2.5.0', '< 3.1.0']
+  spec.required_ruby_version = ['>= 2.5.0', '< 3.2.0']
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|docs)/}) }
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
