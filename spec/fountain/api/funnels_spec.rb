@@ -84,6 +84,46 @@ describe Fountain::Api::Funnels do
     end
   end
 
+  describe '.get' do
+    let(:funnel_id) { '49dbf2f3-057f-44b4-a638-8fac5aac2adf' }
+
+    before do
+      # Stubs for /v2/funnels/:funnel_id REST API
+      stub_authed_request(:get, "/v2/funnels/#{funnel_id}")
+        .to_return(
+          body: funnel1.to_json,
+          status: 200
+        )
+    end
+
+    it 'returns the funnel' do
+      funnel = described_class.get(funnel_id)
+      expect(funnel).to be_a Fountain::Funnel
+      expect(funnel.id).to eq funnel_id
+      expect(funnel.title).to eq 'My Public Funnel'
+    end
+  end
+
+  describe '.get_stage' do
+    let(:stage_id) { '70d446ca-670d-44be-a728-6c3d1921fb97' }
+
+    before do
+      # Stubs for /v2/funnels/:funnel_id REST API
+      stub_authed_request(:get, "/v2/stages/#{stage_id}")
+        .to_return(
+          body: funnel1['stages'].first.to_json,
+          status: 200
+        )
+    end
+
+    it 'returns the stage' do
+      stage = described_class.get_stage(stage_id)
+      expect(stage).to be_a Fountain::Stage
+      expect(stage.id).to eq stage_id
+      expect(stage.title).to eq 'Approved'
+    end
+  end
+
   describe '.update' do
     before do
       # Stubs for /v2/funnels/:id REST API
