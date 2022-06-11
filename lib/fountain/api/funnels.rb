@@ -28,15 +28,6 @@ module Fountain
       end
 
       #
-      # Get Stage Info
-      # @param [String] stage_id ID of the Fountain stage
-      # @return [Fountain::Stage]
-      def self.get_stage(stage_id)
-        response = request_json("/v2/stages/#{stage_id}")
-        Fountain::Stage.new response
-      end
-
-      #
       # Update Funnel
       # @param [String] funnel_id ID of the Fountain funnel
       # @param [Hash] update_options A hash of options when updating a funnel
