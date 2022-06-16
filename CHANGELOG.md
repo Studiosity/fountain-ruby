@@ -3,6 +3,10 @@
 ## Unreleased
 - None
 
+## [0.0.16](releases/tag/v0.0.16) - 2022-06-16
+### Added
+- [#7] First/last name accessor methods to the Applicant class ([@noahkconley][])
+
 ## [0.0.15](releases/tag/v0.0.15) - 2022-06-15
 ### Added
 - [#6] Additional accessor methods to the Applicant class ([@noahkconley][])
