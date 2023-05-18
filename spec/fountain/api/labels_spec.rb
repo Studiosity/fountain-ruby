@@ -35,14 +35,14 @@ describe Fountain::Api::Labels do
   end
 
   describe '.update_applicant_label' do
-    let(:label2) do
+    let(:other_label) do
       {
         'title' => 'Other Label',
         'completed' => true
       }
     end
 
-    let(:label3) do
+    let(:new_label) do
       {
         'title' => 'New Label',
         'completed' => false
@@ -63,7 +63,7 @@ describe Fountain::Api::Labels do
         :put,
         '/v2/applicants/01234567-0000-0000-0000-000000000000/labels/other-label'
       ).to_return(
-        body: { labels: [label2] }.to_json,
+        body: { labels: [other_label] }.to_json,
         status: 200
       )
 
@@ -76,7 +76,7 @@ describe Fountain::Api::Labels do
           completed_at: '2018-04-03'
         }.to_json
       ).to_return(
-        body: { labels: [label3] }.to_json,
+        body: { labels: [new_label] }.to_json,
         status: 200
       )
     end

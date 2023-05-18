@@ -21,12 +21,4 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
   spec.metadata['rubygems_mfa_required'] = 'true'
-
-  spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 1.21'
-  spec.add_development_dependency 'rubocop-rake', '~> 0.6'
-  spec.add_development_dependency 'rubocop-rspec', '~> 2.5'
-  spec.add_development_dependency 'simplecov', '~> 0.16', '< 0.18'
-  spec.add_development_dependency 'webmock', '~> 2.3'
 end

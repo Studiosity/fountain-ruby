@@ -7,21 +7,21 @@ describe Fountain::Api::Applicants do
 
   after { Fountain.api_token = nil }
 
-  let(:applicant1) do
+  let(:rich) do
     {
       'id' => '01234567-0000-0000-0000-000000000000',
       'email' => 'rich@gmail.com',
       'name' => 'Richard'
     }
   end
-  let(:applicant2) do
+  let(:frank) do
     {
       'id' => '01234567-0000-0000-0000-000000000001',
       'email' => 'frank@gmail.com',
       'name' => 'Frank'
     }
   end
-  let(:applicant3) do
+  let(:tom) do
     {
       'id' => '01234567-0000-0000-0000-000000000002',
       'email' => 'tom@gmail.com',
@@ -35,7 +35,7 @@ describe Fountain::Api::Applicants do
       stub_authed_request(:get, '/v2/applicants')
         .to_return(
           body: {
-            applicants: [applicant1, applicant2],
+            applicants: [rich, frank],
             pagination: {
               current_cursor: 'cursor1',
               next_cursor: 'cursor2'
@@ -47,7 +47,7 @@ describe Fountain::Api::Applicants do
       stub_authed_request(:get, '/v2/applicants?funnel_id=1234&stage_id=4567&stage=Foo')
         .to_return(
           body: {
-            applicants: [applicant2],
+            applicants: [frank],
             pagination: {
               current_cursor: 'cursor3',
               next_cursor: 'cursor4'
@@ -58,7 +58,7 @@ describe Fountain::Api::Applicants do
 
       stub_authed_request(:get, '/v2/applicants?labels=Bar&cursor=abcd')
         .to_return(
-          body: { applicants: [applicant1] }.to_json,
+          body: { applicants: [rich] }.to_json,
           status: 200
         )
     end
@@ -109,7 +109,7 @@ describe Fountain::Api::Applicants do
           }.to_json
         )
         .to_return(
-          body: applicant1.to_json,
+          body: rich.to_json,
           status: 200
         )
 
@@ -127,7 +127,7 @@ describe Fountain::Api::Applicants do
           }.to_json
         )
         .to_return(
-          body: applicant2.to_json,
+          body: frank.to_json,
           status: 200
         )
 
@@ -140,7 +140,7 @@ describe Fountain::Api::Applicants do
           }.to_json
         )
         .to_return(
-          body: applicant3.to_json,
+          body: tom.to_json,
           status: 201
         )
     end
@@ -203,7 +203,7 @@ describe Fountain::Api::Applicants do
       # Stubs for /v2/applicants/:id REST API
       stub_authed_request(:get, '/v2/applicants/01234567-0000-0000-0000-000000000000')
         .to_return(
-          body: applicant1.to_json,
+          body: rich.to_json,
           status: 200
         )
     end
@@ -217,14 +217,14 @@ describe Fountain::Api::Applicants do
   end
 
   describe '.update' do
-    let(:applicant1) do
+    let(:rich) do
       {
         'id' => '01234567-0000-0000-0000-000000000000',
         'email' => 'richard@gmail.com',
         'name' => 'Dicky'
       }
     end
-    let(:applicant2) do
+    let(:frank) do
       {
         'id' => '01234567-0000-0000-0000-000000000001',
         'email' => 'frank@gmail.com',
@@ -247,14 +247,14 @@ describe Fountain::Api::Applicants do
           }.to_json
         )
         .to_return(
-          body: applicant1.to_json,
+          body: rich.to_json,
           status: 200
         )
 
       stub_authed_request(:put, '/v2/applicants/01234567-0000-0000-0000-000000000001')
         .with(body: { name: 'Franky' }.to_json)
         .to_return(
-          body: applicant2.to_json,
+          body: frank.to_json,
           status: 200
         )
 
