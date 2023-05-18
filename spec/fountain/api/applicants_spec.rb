@@ -371,16 +371,24 @@ describe Fountain::Api::Applicants do
     before do
       # Stubs for /v2/applicants/advance REST API
       stub_authed_request(:post, '/v2/applicants/advance?stage-id')
+        .with(
+          body: {
+            skip_automated_actions: true,
+            funnel_id: 'funnel-id',
+            ids: ['01234567-0000-0000-0000-000000000001']
+          }.to_json
+        )
         .to_return(status: 204)
 
       stub_authed_request(:post, '/v2/applicants/advance?stage-id')
         .with(
           body: {
-            ids: ['01234567-0000-0000-0000-000000000000'],
             skip_automated_actions: true,
+            funnel_id: 'funnel-id',
+            ids: ['01234567-0000-0000-0000-000000000002']
           }.to_json
         )
-        .to_return(status: 204)
+        .to_return(status: 422)
     end
 
     it 'advances the applicants to a specific stage (ignoring non-standard arguments)' do
@@ -388,10 +396,22 @@ describe Fountain::Api::Applicants do
         ['01234567-0000-0000-0000-000000000001'],
         'stage-id',
         skip_automated_actions: true,
-        funnel_id: 'funnel-id',
-        invalid_arg: 'should not be included'
+        invalid_arg: 'should not be included',
+        funnel_id: 'funnel-id'
       )
       expect(result).to be true
+    end
+
+    it 'returns an error if params are invalid' do
+      expect do
+        described_class.advance_applicants(
+          ['01234567-0000-0000-0000-000000000002'],
+          'stage-id',
+          skip_automated_actions: true,
+          invalid_arg: 'should not be included',
+          funnel_id: 'funnel-id'
+        )
+      end.to raise_error Fountain::HTTPError, 'Invalid http response code: 422'
     end
   end
 
