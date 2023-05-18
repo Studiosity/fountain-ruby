@@ -388,6 +388,7 @@ describe Fountain::Api::Applicants do
         ['01234567-0000-0000-0000-000000000001'],
         'stage-id',
         skip_automated_actions: true,
+        funnel_id: 'funnel-id',
         invalid_arg: 'should not be included'
       )
       expect(result).to be true
