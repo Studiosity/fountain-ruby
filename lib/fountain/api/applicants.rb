@@ -138,6 +138,27 @@ module Fountain
       end
 
       #
+      # Advance multiple Applicants
+      # @param [String] applicant_id IDs of the Fountain applicants
+      # @param [String] Destination stage's ID
+      # @param [Hash] advance_options A hash of options to advance applicant
+      #                 skip_automated_actions - `true` if you want to skip automated
+      #                                          actions when advancing the applicant
+      #                 funnel_id - Used for bulk advancing applicants to a workflow-based funnel
+      def self.advance_applicants(applicant_ids, stage_id, advance_options = {})
+        response = request(
+          "/v2/applicants/advance?#{stage_id}",
+          method: :post,
+          body: Util.slice_hash(
+            advance_options,
+            :skip_automated_actions, :funnel_id
+          ).merge(ids: applicant_ids)
+        )
+        check_response response, Net::HTTPNoContent
+        true
+      end
+
+      #
       # Get Interview Sessions
       # @param [String] applicant_id ID of the Fountain applicant
       # @return [[Fountain::Slot]]
