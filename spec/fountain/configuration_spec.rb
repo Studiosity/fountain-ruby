@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Fountain do # rubocop:disable RSpec/FilePath
+describe Fountain do # rubocop:disable RSpec/FilePath, RSpec/SpecFilePathFormat
   it 'sets default value for host_path option' do
     expect(described_class.host_path).to eq 'https://api.fountain.com'
   end
