@@ -3,6 +3,7 @@
 require 'fountain/gem_version'
 
 require 'json'
+require 'forwardable'
 
 require 'fountain/configuration'
 require 'fountain/util'

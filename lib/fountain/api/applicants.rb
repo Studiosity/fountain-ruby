@@ -130,7 +130,7 @@ module Fountain
           method: :put,
           body: Util.slice_hash(
             advance_options,
-            :skip_automated_actions, :stage_id
+            :skip_automated_actions, :stage_id, :funnel_id
           )
         )
         check_response response, Net::HTTPNoContent

@@ -347,6 +347,16 @@ describe Fountain::Api::Applicants do
           }.to_json
         )
         .to_return(status: 204)
+
+      stub_authed_request(:put, '/v2/applicants/01234567-0000-0000-0000-000000000002/advance')
+        .with(
+          body: {
+            skip_automated_actions: true,
+            stage_id: 'stage-id',
+            funnel_id: 'funnel-id'
+          }.to_json
+        )
+        .to_return(status: 204)
     end
 
     it 'advances an applicant' do
@@ -361,6 +371,17 @@ describe Fountain::Api::Applicants do
         '01234567-0000-0000-0000-000000000001',
         skip_automated_actions: true,
         stage_id: 'stage-id',
+        invalid_arg: 'should not be included'
+      )
+      expect(result).to be true
+    end
+
+    it 'advances an applicant to a specific stage and funnel (ignoring non-standard arguments)' do
+      result = described_class.advance_applicant(
+        '01234567-0000-0000-0000-000000000002',
+        skip_automated_actions: true,
+        stage_id: 'stage-id',
+        funnel_id: 'funnel-id',
         invalid_arg: 'should not be included'
       )
       expect(result).to be true
