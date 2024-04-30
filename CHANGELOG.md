@@ -3,6 +3,10 @@
 ## Unreleased
 - None
 
+## [0.0.20](releases/tag/v0.0.20) - 2024-04-30
+### Added
+- [#11] Fix query parameter bug in Applicants#advance_applicants ([@abrom][])
+
 ## [0.0.19](releases/tag/v0.0.19) - 2024-04-30
 ### Added
 - [#10] Add `funnel_id` to Applicants#advance_applicant ([@abrom][])
