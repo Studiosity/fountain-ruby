@@ -391,7 +391,7 @@ describe Fountain::Api::Applicants do
   describe '.advance_applicants' do
     before do
       # Stubs for /v2/applicants/advance REST API
-      stub_authed_request(:post, '/v2/applicants/advance?stage-id')
+      stub_authed_request(:post, '/v2/applicants/advance?stage_id=stage-id')
         .with(
           body: {
             skip_automated_actions: true,
@@ -401,7 +401,7 @@ describe Fountain::Api::Applicants do
         )
         .to_return(status: 204)
 
-      stub_authed_request(:post, '/v2/applicants/advance?stage-id')
+      stub_authed_request(:post, '/v2/applicants/advance?stage_id=stage-id')
         .with(
           body: {
             skip_automated_actions: true,

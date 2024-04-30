@@ -145,12 +145,12 @@ module Fountain
       #                 skip_automated_actions - `true` if you want to skip automated
       #                                          actions when advancing the applicant
       #                 funnel_id - Used for bulk advancing applicants to a workflow-based funnel
-      def self.advance_applicants(applicant_ids, stage_id, advance_options = {})
+      def self.advance_applicants(applicant_ids, stage_id, advanced_options = {})
         response = request(
-          "/v2/applicants/advance?#{stage_id}",
+          "/v2/applicants/advance?stage_id=#{stage_id}",
           method: :post,
           body: Util.slice_hash(
-            advance_options,
+            advanced_options,
             :skip_automated_actions, :funnel_id
           ).merge(ids: applicant_ids)
         )
