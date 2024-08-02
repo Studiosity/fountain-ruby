@@ -3,6 +3,10 @@
 ## Unreleased
 - None
 
+## [0.0.21](releases/tag/v0.0.21) - 2024-08-02
+### Added
+- [#12] Add Fountain::UnexpectedHTTPError to provide more error context ([@abrom][])
+
 ## [0.0.20](releases/tag/v0.0.20) - 2024-04-30
 ### Added
 - [#11] Fix query parameter bug in Applicants#advance_applicants ([@abrom][])
