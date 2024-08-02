@@ -19,6 +19,28 @@ module Fountain
 
   class InvalidMethodError < HTTPError; end
 
+  class UnexpectedHTTPError < HTTPError
+    def initialize(response)
+      @response = response
+      super "Unexpected http response code: #{response.code}"
+    end
+
+    def response_code
+      @response.code
+    end
+
+    def parsed_body
+      JSON.parse(@response.body)
+    rescue JSON::ParserError
+      @response.body
+    end
+
+    def response_message
+      body = parsed_body
+      body['message'] if body.is_a? Hash
+    end
+  end
+
   class JsonParseError < Error; end
 
   class MissingApiKeyError < Error; end
