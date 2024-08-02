@@ -43,7 +43,7 @@ module Fountain
         when *[expected_response].flatten then nil
         when Net::HTTPUnauthorized then raise Fountain::AuthenticationError
         when Net::HTTPNotFound then raise Fountain::NotFoundError
-        else raise HTTPError, "Invalid http response code: #{response.code}"
+        else raise Fountain::UnexpectedHTTPError, response
         end
       end
 

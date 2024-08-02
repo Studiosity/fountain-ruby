@@ -432,7 +432,7 @@ describe Fountain::Api::Applicants do
           invalid_arg: 'should not be included',
           funnel_id: 'funnel-id'
         )
-      end.to raise_error Fountain::HTTPError, 'Invalid http response code: 422'
+      end.to raise_error Fountain::UnexpectedHTTPError, 'Unexpected http response code: 422'
     end
   end
 
