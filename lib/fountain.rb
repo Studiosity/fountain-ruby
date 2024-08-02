@@ -19,10 +19,13 @@ module Fountain
 
   class InvalidMethodError < HTTPError; end
 
+  #
+  # Unexpected HTTP Error
+  #
   class UnexpectedHTTPError < HTTPError
     def initialize(response)
       @response = response
-      super "Unexpected http response code: #{response.code}"
+      super("Unexpected http response code: #{response.code}")
     end
 
     def response_code

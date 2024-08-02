@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Fountain do
   describe Fountain::Error do
-    it { is_expected.to be_a ::StandardError }
+    it { is_expected.to be_a StandardError }
   end
 
   describe Fountain::HTTPError do
@@ -42,7 +42,7 @@ describe Fountain do
       it { is_expected.to eq '422' }
     end
 
-    describe '#parsed_body'do
+    describe '#parsed_body' do
       subject(:parsed_body) { unexpected_http_error.parsed_body }
 
       it { is_expected.to eq('message' => 'Applicant is already on this stage') }
