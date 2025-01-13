@@ -3,6 +3,10 @@
 ## Unreleased
 - None
 
+## [0.0.22](releases/tag/v0.0.22) - 2025-01-14
+### Added
+- [#13] Add Ruby support for v3.4 ([@abrom][])
+
 ## [0.0.21](releases/tag/v0.0.21) - 2024-08-02
 ### Added
 - [#12] Add Fountain::UnexpectedHTTPError to provide more error context ([@abrom][])
