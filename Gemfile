@@ -7,8 +7,8 @@ gemspec
 
 gem 'rake', '~> 12.3', '>= 12.3.3'
 gem 'rspec', '~> 3.0'
-gem 'rubocop', '~> 1.21'
+gem 'rubocop', '~> 1.70'
 gem 'rubocop-rake', '~> 0.6'
-gem 'rubocop-rspec', '~> 2.5'
+gem 'rubocop-rspec', '~> 3.3'
 gem 'simplecov', '~> 0.16', '< 0.18'
-gem 'webmock', '~> 2.3'
+gem 'webmock', '~> 3.24'
